@@ -1,14 +1,19 @@
 import React from 'react'
-
+import Header from '../../components/Header'
+import { connect } from 'react-redux'
 // 同构：在服务端执行一次，在客户端再执行一次
 
-const Home = () => {
+const Home = (props) => {
   return (
     <div>
-      <h1>Hello SSR!</h1>
-      <button onClick={() => alert('alert')}>click</button>
+      <Header />
+      <h1>Hello SSR! {props.name}</h1>
     </div>
   )
 }
 
-export default Home
+const mapStateToProps = (state) => ({
+  ...state
+})
+
+export default connect(mapStateToProps, null)(Home)
