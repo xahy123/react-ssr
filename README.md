@@ -1,5 +1,6 @@
 ##为了让服务端能够识别 react代码 webpack需要配置如下
-<!-- const path = require('path')
+(```)
+const path = require('path')
 const nodeExternals = require('webpack-node-externals')
 module.exports = {
   target: 'node',
@@ -20,5 +21,9 @@ module.exports = {
       }
     }]
   }
-} -->
+}
+(```)
 
+
+#打包及运行
+需全局安装webpack和nodemon

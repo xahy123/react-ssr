@@ -4,6 +4,7 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 
 const app = express()
+/** renderToString方法不会渲染方法  只能渲染html */
 const content = renderToString(<Home />)
 
 app.get('/', function (req, res) {
@@ -14,12 +15,10 @@ app.get('/', function (req, res) {
       <title>ssr</title>
     </head>
     <body>
-      <h1>first lesson</h1>
-      <p>hello world 43</p>
       ${content}
     </body>
   </html>`
   );
 });
 
-var server = app.listen(3000)
+const server = app.listen(3000)
