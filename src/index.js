@@ -4,7 +4,8 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 
 const app = express()
-/** renderToString方法不会渲染方法  只能渲染html */
+app.use(express.static('public'))
+/** renderToString方法不会渲染方法  只能渲染html, 想要执行js事件需要利用同构 */
 const content = renderToString(<Home />)
 
 app.get('/', function (req, res) {
@@ -15,7 +16,8 @@ app.get('/', function (req, res) {
       <title>ssr</title>
     </head>
     <body>
-      ${content}
+      <div id='root'>${content}</div>
+      <script src='/index.js'></script>
     </body>
   </html>`
   );

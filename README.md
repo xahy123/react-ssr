@@ -26,4 +26,12 @@ module.exports = {
 
 
 #打包及运行
-需全局安装webpack和nodemon
+需全局安装webpack(否则需要改打包webpack命令 ./node_modules/.bin/webpack --config webpack.config.dev.js --watch)
+nodemon && npm-run-all 开发环境安装即可
+
+
+##客户端渲染
+###React代码在浏览器执行 消耗的是用户浏览器的性能
+
+##服务端渲染
+###React代码在服务器执行 增加了对服务器性能的消耗
