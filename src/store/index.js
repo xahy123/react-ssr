@@ -1,11 +1,12 @@
 import thunk from 'redux-thunk'
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, combineReducers } from 'redux'
+import { reducer as HomeReducers } from '../containers/Home/store'
 
-const reducer = (state = { name: '张三' }, action) => {
-  return state
-}
+const reducer = combineReducers({
+  home: HomeReducers
+})
 const getStore = () => {
-  return createStore(reducer)
+  return createStore(reducer, applyMiddleware(thunk))
 }
 
 export default getStore

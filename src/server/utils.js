@@ -20,6 +20,7 @@ export const render = (req) => {
     `<html>
     <head>
       <title>ssr</title>
+      <link rel="icon" href="data:,">
     </head>
     <body>
       <div id='root'>${content}</div>
