@@ -1,31 +1,36 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-// 服务端只能使用StaticRouter
-import { StaticRouter } from 'react-router'
-import Routes from '../Routes'
 import { Provider } from 'react-redux'
-import getStore from '../store'
+// 服务端只能使用StaticRouter 不能使用BrowserRouter
+import { Route, StaticRouter } from 'react-router-dom'
 
-export const render = (req) => {
-
+export const render = (store, routes, req) => {
 
   const content = renderToString((
-    <Provider store={getStore()}>
+    <Provider store={store}>
       <StaticRouter location={req.path} context={{}}>
-        {Routes}
+        {
+          routes.map((item =>
+            <div key={item.key}>
+              <Route {...item} />
+            </div>
+          ))
+        }
       </StaticRouter>
     </Provider>
   ))
-  return (
-    `<html>
-    <head>
-      <title>ssr</title>
-      <link rel="icon" href="data:,">
-    </head>
-    <body>
-      <div id='root'>${content}</div>
-      <script src='/index.js'></script>
-    </body>
-  </html>`
-  )
+  return (`<html>
+      <head>
+        <title>ssr</title>
+      </head>
+      <body>
+        <div id='root'>${content}</div>
+        <script>
+          window.context = {
+            state: ${JSON.stringify(store.getState())}
+          }
+        </script>
+        <script src='/index.js'></script>
+      </body>
+    </html>`)
 }
