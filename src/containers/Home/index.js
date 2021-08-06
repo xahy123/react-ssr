@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import Header from '../../components/Header'
 import { connect } from 'react-redux'
 import { getHomeList } from './store/actions'
 // 同构：在服务端执行一次，在客户端再执行一次
@@ -16,7 +15,6 @@ const Home = (props) => {
   const { newList } = props
   return (
     <div>
-      <Header />
       {
         newList && newList.map((item, index) =>
           <div key={item.code}>{index + 1}、{item.title}</div>

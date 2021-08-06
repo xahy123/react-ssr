@@ -1,6 +1,7 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
+import { renderRoutes } from 'react-router-config'
 // 服务端只能使用StaticRouter 不能使用BrowserRouter
 import { Route, StaticRouter } from 'react-router-dom'
 
@@ -10,11 +11,7 @@ export const render = (store, routes, req) => {
     <Provider store={store}>
       <StaticRouter location={req.path} context={{}}>
         {
-          routes.map((item =>
-            <div key={item.key}>
-              <Route {...item} />
-            </div>
-          ))
+          renderRoutes(routes)
         }
       </StaticRouter>
     </Provider>
