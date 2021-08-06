@@ -12,13 +12,14 @@ const Home = (props) => {
       props.getHomeList()
     }
   }, [])
+  // console.log(props);
   const { newList } = props
   return (
     <div>
       <Header />
       {
-        newList.map((item, index) =>
-          <div key={item.id}>{index + 1}、{item.title}</div>
+        newList && newList.map((item, index) =>
+          <div key={item.code}>{index + 1}、{item.title}</div>
         )
       }
     </div>

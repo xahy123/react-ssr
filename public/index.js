@@ -393,6 +393,17 @@ eval("\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/i
 
 /***/ }),
 
+/***/ "./src/client/request.js":
+/*!*******************************!*\
+  !*** ./src/client/request.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", ({\n  value: true\n}));\n\nvar _axios = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n\nvar _axios2 = _interopRequireDefault(_axios);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar instance = _axios2.default.create({\n  baseURL: ''\n});\n\nexports.default = instance;\n\n//# sourceURL=webpack://react_ssr_demo/./src/client/request.js?");
+
+/***/ }),
+
 /***/ "./src/components/Header/index.js":
 /*!****************************************!*\
   !*** ./src/components/Header/index.js ***!
@@ -411,7 +422,7 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", ({\n  value: true\n}));
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", ({\n  value: true\n}));\n\nvar _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _Header = __webpack_require__(/*! ../../components/Header */ \"./src/components/Header/index.js\");\n\nvar _Header2 = _interopRequireDefault(_Header);\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ \"./node_modules/react-redux/es/index.js\");\n\nvar _actions = __webpack_require__(/*! ./store/actions */ \"./src/containers/Home/store/actions.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n// 同构：在服务端执行一次，在客户端再执行一次\n\nvar Home = function Home(props) {\n  // 服务端不执行 useEffect, 服务端需要单独去请求数据\n  (0, _react.useEffect)(function () {\n    // 只有用户进入的第一个页面是服务端渲染  从这个页面跳到其它页面走的是客户端路由\n    if (!props.newList.length) {\n      props.getHomeList();\n    }\n  }, []);\n  var newList = props.newList;\n\n  return _react2.default.createElement(\n    'div',\n    null,\n    _react2.default.createElement(_Header2.default, null),\n    newList.map(function (item, index) {\n      return _react2.default.createElement(\n        'div',\n        { key: item.id },\n        index + 1,\n        '\\u3001',\n        item.title\n      );\n    })\n  );\n};\n\nHome.loadData = function (store) {\n  // 这个函数负责在服务端渲染之前，把当前页面所需要的数据提前加载好\n  return store.dispatch((0, _actions.getHomeList)());\n};\n\nvar mapStateToProps = function mapStateToProps(state) {\n  return _extends({}, state.home);\n};\nvar mapDispatchToProps = function mapDispatchToProps(dispatch) {\n  return {\n    getHomeList: function getHomeList() {\n      dispatch((0, _actions.getHomeList)());\n    }\n  };\n};\n\nexports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Home);\n\n//# sourceURL=webpack://react_ssr_demo/./src/containers/Home/index.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", ({\n  value: true\n}));\n\nvar _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _Header = __webpack_require__(/*! ../../components/Header */ \"./src/components/Header/index.js\");\n\nvar _Header2 = _interopRequireDefault(_Header);\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ \"./node_modules/react-redux/es/index.js\");\n\nvar _actions = __webpack_require__(/*! ./store/actions */ \"./src/containers/Home/store/actions.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n// 同构：在服务端执行一次，在客户端再执行一次\n\nvar Home = function Home(props) {\n  // 服务端不执行 useEffect, 服务端需要单独去请求数据\n  (0, _react.useEffect)(function () {\n    // 只有用户进入的第一个页面是服务端渲染  从这个页面跳到其它页面走的是客户端路由\n    if (!props.newList.length) {\n      props.getHomeList();\n    }\n  }, []);\n  // console.log(props);\n  var newList = props.newList;\n\n  return _react2.default.createElement(\n    'div',\n    null,\n    _react2.default.createElement(_Header2.default, null),\n    newList && newList.map(function (item, index) {\n      return _react2.default.createElement(\n        'div',\n        { key: item.code },\n        index + 1,\n        '\\u3001',\n        item.title\n      );\n    })\n  );\n};\n\nHome.loadData = function (store) {\n  // 这个函数负责在服务端渲染之前，把当前页面所需要的数据提前加载好\n  return store.dispatch((0, _actions.getHomeList)());\n};\n\nvar mapStateToProps = function mapStateToProps(state) {\n  return _extends({}, state.home);\n};\nvar mapDispatchToProps = function mapDispatchToProps(dispatch) {\n  return {\n    getHomeList: function getHomeList() {\n      dispatch((0, _actions.getHomeList)());\n    }\n  };\n};\n\nexports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Home);\n\n//# sourceURL=webpack://react_ssr_demo/./src/containers/Home/index.js?");
 
 /***/ }),
 
@@ -422,7 +433,7 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", ({\n  value: true\n}));
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", ({\n  value: true\n}));\nexports.getHomeList = undefined;\n\nvar _axios = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n\nvar _axios2 = _interopRequireDefault(_axios);\n\nvar _constants = __webpack_require__(/*! ./constants */ \"./src/containers/Home/store/constants.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar getHomeList = exports.getHomeList = function getHomeList() {\n  var getList = function getList(list) {\n    return {\n      type: _constants.CHANGE_NEWS_LISTS,\n      newList: list\n    };\n  };\n  return function (dispatch) {\n    return _axios2.default.get('http://127.0.0.1:4523/mock/244/news').then(function (res) {\n      dispatch(getList(res.data.items));\n    });\n  };\n};\n\n//# sourceURL=webpack://react_ssr_demo/./src/containers/Home/store/actions.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", ({\n  value: true\n}));\nexports.getHomeList = undefined;\n\nvar _axios = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n\nvar _axios2 = _interopRequireDefault(_axios);\n\nvar _constants = __webpack_require__(/*! ./constants */ \"./src/containers/Home/store/constants.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar getHomeList = exports.getHomeList = function getHomeList() {\n  var getList = function getList(list) {\n    return {\n      type: _constants.CHANGE_NEWS_LISTS,\n      newList: list\n    };\n  };\n  return function (dispatch, getState, axiosInstace) {\n    // http://127.0.0.1:4523/mock/244/categories\n    // 浏览器运行\n    // /mock/244/categories = http://localhost:3000/mock/244/categories\n    // 服务器运行\n    // /mock/244/categories = 服务器根目录下/mock/244/categories\n    return axiosInstace.get('/mock/244/categories').then(function (res) {\n      dispatch(getList(res.data));\n    });\n  };\n};\n\n//# sourceURL=webpack://react_ssr_demo/./src/containers/Home/store/actions.js?");
 
 /***/ }),
 
@@ -470,6 +481,17 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", ({\n  value: true\n}));
 
 /***/ }),
 
+/***/ "./src/server/request.js":
+/*!*******************************!*\
+  !*** ./src/server/request.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", ({\n  value: true\n}));\n\nvar _axios = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n\nvar _axios2 = _interopRequireDefault(_axios);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar instance = _axios2.default.create({\n  baseURL: 'http://127.0.0.1:4523'\n});\n\nexports.default = instance;\n\n//# sourceURL=webpack://react_ssr_demo/./src/server/request.js?");
+
+/***/ }),
+
 /***/ "./src/store/index.js":
 /*!****************************!*\
   !*** ./src/store/index.js ***!
@@ -477,7 +499,7 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", ({\n  value: true\n}));
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", ({\n  value: true\n}));\nexports.getClientStore = exports.getStore = undefined;\n\nvar _reduxThunk = __webpack_require__(/*! redux-thunk */ \"./node_modules/redux-thunk/es/index.js\");\n\nvar _reduxThunk2 = _interopRequireDefault(_reduxThunk);\n\nvar _redux = __webpack_require__(/*! redux */ \"./node_modules/redux/es/redux.js\");\n\nvar _store = __webpack_require__(/*! ../containers/Home/store */ \"./src/containers/Home/store/index.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar reducer = (0, _redux.combineReducers)({\n  home: _store.reducer\n});\nvar getStore = exports.getStore = function getStore() {\n  return (0, _redux.createStore)(reducer, (0, _redux.applyMiddleware)(_reduxThunk2.default));\n};\n\nvar getClientStore = exports.getClientStore = function getClientStore() {\n  var defaultState = window.context.state;\n  return (0, _redux.createStore)(reducer, defaultState, (0, _redux.applyMiddleware)(_reduxThunk2.default));\n};\n\n//# sourceURL=webpack://react_ssr_demo/./src/store/index.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", ({\n  value: true\n}));\nexports.getClientStore = exports.getStore = undefined;\n\nvar _reduxThunk = __webpack_require__(/*! redux-thunk */ \"./node_modules/redux-thunk/es/index.js\");\n\nvar _reduxThunk2 = _interopRequireDefault(_reduxThunk);\n\nvar _redux = __webpack_require__(/*! redux */ \"./node_modules/redux/es/redux.js\");\n\nvar _store = __webpack_require__(/*! ../containers/Home/store */ \"./src/containers/Home/store/index.js\");\n\nvar _request = __webpack_require__(/*! ../client/request */ \"./src/client/request.js\");\n\nvar _request2 = _interopRequireDefault(_request);\n\nvar _request3 = __webpack_require__(/*! ../server/request */ \"./src/server/request.js\");\n\nvar _request4 = _interopRequireDefault(_request3);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar reducer = (0, _redux.combineReducers)({\n  home: _store.reducer\n});\nvar getStore = exports.getStore = function getStore() {\n  return (0, _redux.createStore)(reducer, (0, _redux.applyMiddleware)(_reduxThunk2.default.withExtraArgument(_request4.default)));\n};\n\nvar getClientStore = exports.getClientStore = function getClientStore() {\n  var defaultState = window.context.state;\n  return (0, _redux.createStore)(reducer, defaultState, (0, _redux.applyMiddleware)(_reduxThunk2.default.withExtraArgument(_request2.default)));\n};\n\n//# sourceURL=webpack://react_ssr_demo/./src/store/index.js?");
 
 /***/ }),
 

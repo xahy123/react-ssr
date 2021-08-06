@@ -3,10 +3,19 @@ import { render } from './utils';
 import { getStore } from '../store'
 import { matchRoutes } from "react-router-config"
 import routes from '../Routes'
+import proxy from 'express-http-proxy'
 
 const app = express()
 app.use(express.static('public'))
 /** renderToString方法不会渲染方法  只能渲染html, 想要执行js事件需要利用同构 */
+
+
+app.use('/mock', proxy('http://127.0.0.1:4523', {
+  proxyReqPathResolver: function(req) {
+    return '/mock' + req.path
+  }
+}));
+
 
 app.get('/*', function (req, res) {
   const store = getStore()
